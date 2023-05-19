@@ -8,10 +8,9 @@ public class CharacterStats : MonoBehaviour
     public float currentHealth;
 
     [Header("Player Damage")]
-    public float _kunaiDamage = 8f;
-    public float _kunaiElementalDamage = 8f;
-    public float _swordSpecialDamage = 35f;
-    public float _shortSwordDamage = 15f;
+    public float _swordSpecialDamage;
+    public float _bananaDamage = 12f;
+    public float _coconutDamage = 20f;
     public float _knockbackForce = 2f;
 }
 

@@ -77,7 +77,7 @@ public class LevelSystem : MonoBehaviour
         level++;
         slider.value = 0;
         currentXp = Mathf.RoundToInt(currentXp - requiredXp);
-        // boost playerStats
+        // boost _playerStats
         Player.GetComponent<PlayerStats>().IncreaseMaxHealthLevel(level);
 
         Instantiate(_LevelUpEffect, Player.transform);

@@ -1,21 +1,23 @@
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.ProBuilder.Shapes;
 
 public class Item : MonoBehaviour
 {
-    public GameObject parentObject;
-    public ParticleSystem _oParticleSystem;
-    public ParticleSystem _tParticleSystem;
-    public GameObject _player;
-    public GameObject _xpBar;
-    private PlayerStats playerStats;
-    private LevelSystem levelSystem;
-    private PlayerMovement playerMovement;
+    [SerializeField] GameObject parentObject;
+    [SerializeField] ParticleSystem _oParticleSystem;
+    [SerializeField] ParticleSystem _tParticleSystem;
+    [SerializeField] GameObject _player;
+    [SerializeField] GameObject _xpBar;
+    PlayerStats _playerStats;
+    LevelSystem _levelSystem;
+    Shape _shape;
 
     void Awake()
     {
-        playerStats = _player.GetComponent<PlayerStats>();
-        levelSystem = _xpBar.GetComponent<LevelSystem>();
-        playerMovement = _player.GetComponent<PlayerMovement>();
+        _playerStats = _player.GetComponent<PlayerStats>();
+        _levelSystem = _xpBar.GetComponent<LevelSystem>();
+        _shape = GetComponent<Shape>();
     }
 
     public void OnTriggerEnter(Collider other)
@@ -26,42 +28,25 @@ public class Item : MonoBehaviour
             XPGained();
             HPGained();
 
-            if (gameObject.tag == "Speed")
-                MSGained();
-
             if (_oParticleSystem != null)
             {
                 _oParticleSystem = Instantiate(_oParticleSystem, transform.position, Quaternion.identity);
             }
-            Destroy(parentObject);
-        }
-
-        if(other.CompareTag("Kunai"))
-        {
-            XPGained();
-            HPGained();
-
-            if(_tParticleSystem != null)
-                _tParticleSystem = Instantiate(_tParticleSystem, transform.position, Quaternion.identity);
+            //Remove the object from the array before destroying it
+            _shape.RemoveFromArray(gameObject, parentObject);
 
             Destroy(parentObject);
-            Destroy(other.gameObject);
         }
     }
 
     
     private void XPGained()
     {
-        levelSystem.GainExperienceFlateRate(10);
+        _levelSystem.GainExperienceFlateRate(10);
     }
 
     private void HPGained()
     {
-        playerStats.Healing(10);
-    }
-
-    private void MSGained()
-    {
-        playerMovement.BuffSpeed(2f);
+        _playerStats.Healing(10f);
     }
 }

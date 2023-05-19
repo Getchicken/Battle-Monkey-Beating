@@ -30,10 +30,6 @@ public class EnemyTarget : EnemyStats, IHealable
             CharacterStats characterStats = other.GetComponent<CharacterStats>();
             if (characterStats == null) return;
 
-            if (!ah.inSpecial)
-            {
-                TakeDamage(characterStats._shortSwordDamage);
-            }
             if (ah.inSpecial)
             {
                 TakeDamage(characterStats._swordSpecialDamage);

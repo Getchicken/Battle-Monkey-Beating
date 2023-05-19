@@ -13,7 +13,7 @@ public class Jumppad : MonoBehaviour
         if (other.CompareTag("PlayerObj"))
         {
             _playerRB = other.gameObject.GetComponentInParent<Rigidbody>();
-            _playerRB.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+            _playerRB.AddForce(Vector3.up * _jumpForce, ForceMode.VelocityChange);
 
             // Instantiate the particle system prefab
             ParticleSystem particleSystemInstance = Instantiate(_jumpParticle, other.gameObject.transform.position, transform.rotation, other.gameObject.transform);
