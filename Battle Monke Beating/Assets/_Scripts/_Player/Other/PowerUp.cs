@@ -4,7 +4,7 @@ public class PowerUp : MonoBehaviour
 {
     //public PowerUpEffect powerUpEffect;
     public PowerUpEffect[] powerUpEffect;
-    [SerializeField] private ParticleSystem particleSystem;
+    [SerializeField] ParticleSystem _particleSystem;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,7 +15,7 @@ public class PowerUp : MonoBehaviour
                 // Apply the buff to the player
                 buff.Apply(other.gameObject);
             }
-            Instantiate(particleSystem, transform.position, Quaternion.identity);
+            Instantiate(_particleSystem, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

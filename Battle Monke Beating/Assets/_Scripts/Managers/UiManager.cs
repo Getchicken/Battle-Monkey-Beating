@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,7 @@ public class UiManager : MonoBehaviour
     public GameObject player;
     public GameObject camObj;
     public GameManager gm;
+    [SerializeField] private TextMeshProUGUI _tmptext;
 
     private PlayerCam playerCam;
     private Rigidbody rb;
@@ -207,5 +209,10 @@ public class UiManager : MonoBehaviour
         playerCam.enabled = true;
         rb.constraints &= ~RigidbodyConstraints.FreezePosition;
         rb.freezeRotation = true;
+    }
+
+    public void UpdateAmmo(float currentAmmo)
+    {
+        _tmptext.text = "Ammo: " + currentAmmo;
     }
 }
