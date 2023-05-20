@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [SerializeField] ParticleSystem _oParticleSystem;
-    [SerializeField] ParticleSystem _tParticleSystem;
+    [SerializeField] ParticleSystem _purpleBuffParticle;
     [SerializeField] GameObject _player;
     [SerializeField] GameObject _xpBar;
     PlayerStats _playerStats;
@@ -31,9 +30,9 @@ public class Item : MonoBehaviour
         XPGained();
         HPGained();
 
-        if (_oParticleSystem != null)
+        if (_purpleBuffParticle != null)
         {
-            _oParticleSystem = Instantiate(_oParticleSystem, transform.position, Quaternion.identity);
+            _purpleBuffParticle = Instantiate(_purpleBuffParticle, transform.position, Quaternion.identity);
         }
         //Remove the object from the array before destroying it
         gameObject.SetActive(false);

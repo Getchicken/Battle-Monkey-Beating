@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c347927b7e5c7c4599934aea8f2888c, type: 3}
-  m_Name: HealthBuff
+  m_Name: SmallHealthBuff
   m_EditorClassIdentifier: 
   amount: 2

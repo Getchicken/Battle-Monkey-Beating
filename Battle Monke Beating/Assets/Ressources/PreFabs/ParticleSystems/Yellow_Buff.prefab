@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5528208799913797188}
   - component: {fileID: 7857817147891114529}
   m_Layer: 0
-  m_Name: _oParticle System
+  m_Name: Yellow_Buff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1363,8 +1363,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.27058828, g: 0.93211013, b: 1, a: 1}
-        key1: {r: 0.14386791, g: 0.30574614, b: 0.5, a: 0.84313726}
+        key0: {r: 0.9578241, g: 1, b: 0.07075471, a: 1}
+        key1: {r: 1, g: 0.5573876, b: 0.0990566, a: 0.84313726}
         key2: {r: 0.3529412, g: 0.91372555, b: 0.65882355, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}

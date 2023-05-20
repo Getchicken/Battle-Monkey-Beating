@@ -8,7 +8,7 @@ namespace EZCameraShake
         /// Smoothes a Vector3 that represents euler angles.
         /// </summary>
         /// <param name="current">The current Vector3 value.</param>
-        /// <param name="target">The _oParticleSystem Vector3 value.</param>
+        /// <param name="target">The _purpleBuffParticle Vector3 value.</param>
         /// <param name="velocity">A refernce Vector3 used internally.</param>
         /// <param name="smoothTime">The time to smooth, in seconds.</param>
         /// <returns>The smoothed Vector3 value.</returns>
