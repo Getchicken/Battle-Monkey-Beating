@@ -1,5 +1,6 @@
+using System.Collections;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+using UnityEngine.Rendering;
 
 public class Shooting : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class Shooting : MonoBehaviour
     public int currentAmmo;
     public float bulletSpeed = 60f;
 
-    public GameObject fpsCam, bulletPrefab;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private bool Blaster;
+    [SerializeField] private bool Launcher;
     public GameObject muzzleFlash;
     public Animator anim;
     public Transform bulletSpawnPoint;
@@ -26,7 +29,7 @@ public class Shooting : MonoBehaviour
     {
         currentAmmo = maxAmmo;
 
-        _uiManager = GameObject.Find("Canvas").GetComponent<UiManager>();
+        _uiManager = GameObject.Find("UI_Canvas").GetComponent<UiManager>();
 
     }
 
@@ -40,50 +43,44 @@ public class Shooting : MonoBehaviour
 
         if (Input.GetKeyDown("r"))
         {
-            anim.Play("PistolReload");
             anim.SetBool("Reload", true);
+            Reload();
         }
     }
 
     void Reload()
     {
         currentAmmo = maxAmmo;
-        _uiManager.UpdateAmmo(currentAmmo);
-        anim.SetBool("Reload", false);
+        _uiManager.UpdateBlasterAmmo(currentAmmo);
+        _uiManager.UpdateCocoAmmo(currentAmmo);
+        anim.SetBool("inNormalState", false);
+        StartCoroutine(ReloadDelay(1.5f));
     }
 
-    void ResetReloadBool()
+    IEnumerator ReloadDelay(float nextTimeToFire)
     {
-        anim.SetBool("Reload", true);
+        yield return new WaitForSeconds(nextTimeToFire);
+        anim.SetBool("Reload", false);
+        anim.SetBool("inNormalState", true);
     }
 
     void Shoot()
     {
-        //var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-        //bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * bulletSpeed;
         GameObject Flash = Instantiate(muzzleFlash, bulletSpawnPoint);
-        Destroy(Flash, 0.1f);
+        Destroy(Flash, 1.3f);
         pistolShot_fx.Play();
 
-        //RaycastHit hit;
         currentAmmo--;
-        _uiManager.UpdateAmmo(currentAmmo);
-        /* I need to instantiate coconuts or bananas
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
-        {
-            Target target = hit.transform.GetComponent<Target>();
+        if(!Launcher)
+            _uiManager.UpdateBlasterAmmo(currentAmmo);
+        if (!Blaster && Launcher)
+            _uiManager.UpdateCocoAmmo(currentAmmo);
 
-            if (target != null)
-            {
-                target.TakeDamage(damage);
-            }
+        //Instantiate Projectile 
+        GameObject bulletPrefabInstance = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
 
-            if (hit.rigidbody != null)
-            {
-                hit.rigidbody.AddForce(-hit.normal * impactForce);
-            }
-            Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
-        }
-        */
+        // add force
+        Rigidbody bulletPrefabRigidbody = bulletPrefabInstance.GetComponent<Rigidbody>();
+        bulletPrefabRigidbody.AddForce(Camera.main.transform.forward * 100f, ForceMode.Impulse);
     }
 }

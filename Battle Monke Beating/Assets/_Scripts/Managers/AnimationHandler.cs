@@ -47,6 +47,7 @@ public class AnimationHandler : MonoBehaviour
         }
 
         MyInput();
+        HandleMovementKunai();
         HanldeMovementKatana();
         HandleAttackAnimationsKatana();
         DisplayCD();
@@ -91,10 +92,41 @@ public class AnimationHandler : MonoBehaviour
             Katana.SetActive(true);
             Sheath.SetActive(true);
             Invoke("TurnOff", 0.8f);
+        }
+    }
 
-            // Trial
-            //trailRenderer = GetComponentInChildren<TrailRenderer>();
-            //ShowTrail();
+    private void HandleMovementKunai()
+    {
+        // if your attacking return - avoids anim cancel
+        if (isAttacking) return;
+        // return if your in cState Special
+        if (cState == CombatState.special) return;
+
+        if (climbing == true)
+        {
+            anim.SetFloat("Speed", 1.33f, 0.01f, Time.deltaTime);
+        }
+        else if (wallrunning == true)
+        {
+            anim.SetFloat("Speed", 1, 0.1f, Time.deltaTime);
+        }
+        else
+        {
+            if (moveDirection == Vector3.zero)
+            {
+                anim.SetFloat("Speed", 0, 0.5f, Time.deltaTime);
+            }
+            else if (moveDirection != Vector3.zero && !Input.GetKey(sprintKey))
+            {
+                anim.SetFloat("Speed", 0.33f, 0.6f, Time.deltaTime);
+            }
+            else if (moveDirection != Vector3.zero && Input.GetKey(sprintKey))
+            {
+                anim.SetFloat("Speed", 0.66f, 0.33f, Time.deltaTime);
+            }
+            //ShortSword.SetActive(true);
+            //ShortSword2nd.SetActive(false);
+            //Kunai.SetActive(true);
         }
     }
 
@@ -141,7 +173,6 @@ public class AnimationHandler : MonoBehaviour
                 anim.Play("Katana N1", 0, 0);
 
                 isAttacking = true;
-                //ShowTrail();
                 currentAnimation_Katana = 2;
             }
             else if (currentAnimation_Katana == 2 && isAttacking == false)
@@ -149,7 +180,6 @@ public class AnimationHandler : MonoBehaviour
                 anim.Play("Katana N2", 0, 0);
 
                 isAttacking = true;
-                //ShowTrail();
                 currentAnimation_Katana = 3;
             }
             else if (currentAnimation_Katana == 3 && isAttacking == false)
@@ -157,7 +187,6 @@ public class AnimationHandler : MonoBehaviour
                 anim.Play("Katana N3", 0, 0);
 
                 isAttacking = true;
-                //ShowTrail();
                 currentAnimation_Katana = 4;
             }
             else if (currentAnimation_Katana == 4 && isAttacking == false)
@@ -165,11 +194,11 @@ public class AnimationHandler : MonoBehaviour
                 anim.Play("Katana N4", 0, 0);
 
                 isAttacking = true;
-                //ShowTrail();
                 currentAnimation_Katana = 1;
             }
         }
     }
+
 
     private IEnumerator SpecialCoroutine()
     {
@@ -208,18 +237,5 @@ public class AnimationHandler : MonoBehaviour
     void DisplayCD()
     {
         Q_CD_Text.text = string.Format("{0:0.0}", specialCD);
-    }
-
-    private void ShowTrail()
-    {
-        if (trailRenderer == null) return;
-        trailRenderer.enabled = true;
-        StartCoroutine(TurnOffDelay(anim.GetCurrentAnimatorStateInfo(0).normalizedTime + 0.25f));
-    }
-
-    IEnumerator TurnOffDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        trailRenderer.enabled = false;
     }
 }

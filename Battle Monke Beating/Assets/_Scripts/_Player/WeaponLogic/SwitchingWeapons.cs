@@ -65,7 +65,9 @@ public class SwitchingWeapons : MonoBehaviour
                 weapon.gameObject.SetActive(true);
             }
             else
+            {
                 weapon.gameObject.SetActive(false);
+            }
 
             i++;
 
