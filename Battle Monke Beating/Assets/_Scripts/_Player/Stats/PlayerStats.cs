@@ -55,7 +55,7 @@ public class PlayerStats : CharacterStats
 
     public void BuffMaxHealth(float amount)
     {
-        maxHealth += amount * ls.level;
+        maxHealth = maxHealth + (amount * ls.level);
         healthbar.SetCurrentHealth(maxHealth);
     }
 

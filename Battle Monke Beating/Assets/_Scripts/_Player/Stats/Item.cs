@@ -1,10 +1,7 @@
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.ProBuilder.Shapes;
 
 public class Item : MonoBehaviour
 {
-    [SerializeField] GameObject parentObject;
     [SerializeField] ParticleSystem _oParticleSystem;
     [SerializeField] ParticleSystem _tParticleSystem;
     [SerializeField] GameObject _player;
@@ -25,18 +22,21 @@ public class Item : MonoBehaviour
         // touching an item
         if (other.CompareTag("PlayerObj"))
         {
-            XPGained();
-            HPGained();
-
-            if (_oParticleSystem != null)
-            {
-                _oParticleSystem = Instantiate(_oParticleSystem, transform.position, Quaternion.identity);
-            }
-            //Remove the object from the array before destroying it
-            _shape.RemoveFromArray(gameObject, parentObject);
-
-            Destroy(parentObject);
+            PlayerEntered();
         }
+    }
+
+    public void PlayerEntered()
+    {
+        XPGained();
+        HPGained();
+
+        if (_oParticleSystem != null)
+        {
+            _oParticleSystem = Instantiate(_oParticleSystem, transform.position, Quaternion.identity);
+        }
+        //Remove the object from the array before destroying it
+        gameObject.SetActive(false);
     }
 
     

@@ -1,10 +1,12 @@
 using UnityEngine;
 using DG.Tweening;
 using UnityEditor;
-using UnityEngine.ProBuilder.Shapes;
+using System.Collections;
 
 public class Shape : MonoBehaviour
 {
+    [SerializeField] GameObject childObject;
+    Shape shape;
     public GameObject[] movingObjects;
     public GameObject[] rotatingObjects;
 
@@ -34,15 +36,5 @@ public class Shape : MonoBehaviour
                 rO.transform.DOLocalRotate(new Vector3(0, rotationAmount, 0), cycleLength * rotationSpeed, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart);
             }
         }
-    }
-
-    public void RemoveFromArray(GameObject _gameObject, GameObject _parentObject)
-    {
-        //Remove the object from the array before destroying it
-        ArrayUtility.Remove(ref movingObjects, _gameObject);
-        ArrayUtility.Remove(ref rotatingObjects, _gameObject);
-
-        ArrayUtility.Remove(ref movingObjects, _parentObject);
-        ArrayUtility.Remove(ref rotatingObjects, _parentObject);
     }
 }
