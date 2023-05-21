@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Climbing : MonoBehaviour
@@ -46,7 +44,7 @@ public class Climbing : MonoBehaviour
 
     void Start()
     {
-        ah = GetComponent<AnimationHandler>();
+        ah = FindObjectOfType<AnimationHandler>().GetComponent<AnimationHandler>();
     }
 
     void Update()

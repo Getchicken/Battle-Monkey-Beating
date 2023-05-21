@@ -36,7 +36,6 @@ public class PlayerStats : CharacterStats
         maxHealth = SetMaxHealthFromHealthLevel(ls.level);
         currentHealth = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
-        _swordSpecialDamage = 15f;
     }
 
     private float SetMaxHealthFromHealthLevel(int level)
@@ -61,9 +60,8 @@ public class PlayerStats : CharacterStats
 
     public void IncreaseDamage(float _levelMultiplier)
     {
-        _swordSpecialDamage += (_levelMultiplier * ls.level);
-        _bananaDamage += (_levelMultiplier * ls.level);
-        _coconutDamage += (_levelMultiplier * ls.level);
+        _bananaBlasterDamage += (_levelMultiplier * ls.level);
+        _bananaGunDamage += (_levelMultiplier * ls.level);
     }
 
     public void TakeDamage(float damage)

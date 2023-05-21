@@ -1,11 +1,9 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class BananaGun : MonoBehaviour
 {
-    public float damage = 100f;
     public float range = 10000f;
-    public float fireRate = 15f;
+    public float fireRate;
     public float impactForce = 30f;
     public int maxAmmo = 10;
     public int currentAmmo;
@@ -22,40 +20,29 @@ public class BananaGun : MonoBehaviour
 
     private float nextTimeToFire = 0f;
     private UiManager _uiManager;
+    private PlayerStats _playerStats;
 
     void Start()
     {
         currentAmmo = maxAmmo;
 
-        _uiManager = GameObject.Find("UI_Canvas").GetComponent<UiManager>();
-
+        _uiManager = FindObjectOfType<UiManager>();
+        _playerStats = FindObjectOfType<PlayerStats>();
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && Time.time >= nextTimeToFire && currentAmmo >= 1 && anim.GetBool("Reload") == false)
+        if (Input.GetMouseButtonDown(0) && Time.time >= nextTimeToFire && currentAmmo >= 1 && anim.GetBool("isReloading") == false)
         {
             nextTimeToFire = Time.time + 1f / fireRate;
             Shoot();
         }
-
-        if (Input.GetKeyDown("r"))
-        {
-            anim.Play("Reload");
-            anim.SetBool("Reload", true);
-        }
     }
 
-    void Reload()
+    public void Reload()
     {
         currentAmmo = maxAmmo;
         _uiManager.UpdateAmmo(currentAmmo);
-        anim.SetBool("Reload", false);
-    }
-
-    void ResetReloadBool()
-    {
-        anim.SetBool("Reload", true);
     }
 
     void Shoot()
@@ -70,8 +57,9 @@ public class BananaGun : MonoBehaviour
 
         if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, range, Enemy))
         {
-            Target target = hit.transform.GetComponent<Target>();
+            EnemyTarget enemyTarget = hit.transform.GetComponent<EnemyTarget>();
 
+            enemyTarget.TakeDamage(_playerStats._bananaGunDamage);
             // Damage????
             if (hit.rigidbody != null)
             {

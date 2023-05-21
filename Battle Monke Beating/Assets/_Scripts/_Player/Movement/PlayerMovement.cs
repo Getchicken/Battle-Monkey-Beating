@@ -62,7 +62,6 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 moveDirection;
     private Rigidbody rb;
-    private Animator anim;
     private AudioManager am;
     public Climbing climbingScript;
 
@@ -91,8 +90,6 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
 
         startYScale = transform.localScale.y;
-
-        anim = GetComponentInChildren<Animator>();
     }
 
     void Update()

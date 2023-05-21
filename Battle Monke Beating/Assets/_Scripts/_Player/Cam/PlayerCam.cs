@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 public class PlayerCam : MonoBehaviour
 {
@@ -35,6 +32,11 @@ public class PlayerCam : MonoBehaviour
         cameraHolder.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         // rotate orientation
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+    }
 
+    public void ChangeSens(float sens)
+    {
+        sensX = sens;
+        sensY = sens - (sens * 0.5f);
     }
 }

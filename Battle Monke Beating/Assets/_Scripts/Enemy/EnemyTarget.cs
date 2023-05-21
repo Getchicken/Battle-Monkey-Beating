@@ -12,7 +12,7 @@ public class EnemyTarget : EnemyStats, IHealable
     private void Start() 
     {
         rb = GetComponent<Rigidbody>();
-        ah = player.GetComponent<AnimationHandler>();
+        ah = FindObjectOfType<AnimationHandler>();
         _eCurrentHealth = _eMaxHealth;
     }
 
@@ -24,16 +24,6 @@ public class EnemyTarget : EnemyStats, IHealable
             if (characterStats == null) return;
 
             Destroy(other.gameObject);
-        }
-        if (other.CompareTag("Sword"))
-        {
-            CharacterStats characterStats = other.GetComponent<CharacterStats>();
-            if (characterStats == null) return;
-
-            if (ah.inSpecial)
-            {
-                TakeDamage(characterStats._swordSpecialDamage);
-            }
         }
     }
 
@@ -51,7 +41,7 @@ public class EnemyTarget : EnemyStats, IHealable
         }
     }
 
-    private void TakeKnockback()
+    public void TakeKnockback()
     {
         // apply Knockback on enemys
         Vector3 knockbackDirection = transform.position - player.transform.position;

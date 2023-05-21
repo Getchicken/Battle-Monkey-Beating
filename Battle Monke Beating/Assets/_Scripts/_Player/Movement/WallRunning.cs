@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WallRunning : MonoBehaviour
@@ -51,7 +49,7 @@ public class WallRunning : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         pm = GetComponent<PlayerMovement>();
-        ah = GetComponent<AnimationHandler>();
+        ah = FindObjectOfType<AnimationHandler>().GetComponent<AnimationHandler>();
     }
 
     void Update()
@@ -163,12 +161,7 @@ public class WallRunning : MonoBehaviour
         if (useGravity)
             rb.AddForce(transform.up * counterForce * 1.3f, ForceMode.Force);
     }
-    /*
-    if (upwardsRunning)
-            rb.AddForce(Vector3.up * wallClimbSpeed * 1.35f, ForceMode.Force);
-        if (downwardsRunning)
-            rb.AddForce(Vector3.down * wallClimbSpeed, ForceMode.Force);
-    */
+
     private void StopWallrun()
     {
         pm.wallrunning = false;

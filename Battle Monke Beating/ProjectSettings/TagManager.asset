@@ -10,6 +10,8 @@ TagManager:
   - Kunai
   - Sword
   - PlayerObj
+  - Enemy
+  - Ground
   layers:
   - Default
   - TransparentFX

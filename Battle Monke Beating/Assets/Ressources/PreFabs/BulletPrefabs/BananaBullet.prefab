@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 5884993599994806000}
   - component: {fileID: -6665164219811182208}
   - component: {fileID: -510273329945153276}
+  - component: {fileID: 8048434146961222615}
+  - component: {fileID: -4787202001949731098}
   m_Layer: 0
   m_Name: BananaBullet
   m_TagString: Untagged
@@ -30,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 7481139112063005060}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 150, y: 150, z: 150}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -128,3 +130,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _destroyInSeconds: 3
+--- !u!114 &8048434146961222615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7481139112063005060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4fe977d9e143549ba3a4577dea6e94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 1
+--- !u!114 &-4787202001949731098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7481139112063005060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a5f49e370d01d946b1e72999af56200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentObject: {fileID: 7481139112063005060}
+  shakeDuration: 0.3
+  shakeStrength: 0.05
+  _explosionEffect: {fileID: 417761080263594739, guid: 0c6b8b26816932b41b3a85a95ba4bcf0,
+    type: 3}
