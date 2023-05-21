@@ -14,7 +14,6 @@ public class UiManager : MonoBehaviour
     public GameManager gm;
     [SerializeField] private TextMeshProUGUI _BananaGunUI;
     [SerializeField] private TextMeshProUGUI _BananaBlasterUI;
-    [SerializeField] private TextMeshProUGUI _CoconutLaucherUI;
 
     private PlayerCam playerCam;
     private Rigidbody rb;
@@ -220,9 +219,5 @@ public class UiManager : MonoBehaviour
     public void UpdateBlasterAmmo (float currentAmmo)
     {
         _BananaBlasterUI.text = "" + currentAmmo;
-    }
-    public void UpdateCocoAmmo(float currentAmmo)
-    {
-        _CoconutLaucherUI.text = "" + currentAmmo;
     }
 }

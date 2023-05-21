@@ -4,15 +4,14 @@ public class CallOther : MonoBehaviour
 {
     public float radius;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        // touching an item
-        if (other.CompareTag("Enemy") || other.CompareTag("Ground"))
+        // Check if the collision is with an object on the "Enemy" or "Ground" layer
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy") || collision.gameObject.layer == LayerMask.NameToLayer("whatIsGround"))
         {
             GetComponent<Explosion>().Explode();
         }
 
-        // Get the center position of the sphere (in this case, the position of the GameObject this script is attached to)
         Vector3 center = transform.position;
 
         // Perform the overlap sphere check
@@ -21,9 +20,8 @@ public class CallOther : MonoBehaviour
         // Iterate through the colliders
         foreach (Collider collider in colliders)
         {
-            // Perform actions or checks on the overlapping objects
-            // For example, you can check the tag of the collider's GameObject
-            if (collider.CompareTag("Enemy"))
+            // If the layer is enemy apply damage
+            if (collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
                 // Do something with the enemy object
                 EnemyTarget enemyTarget = collider.GetComponent<EnemyTarget>();
@@ -32,4 +30,5 @@ public class CallOther : MonoBehaviour
             }
         }
     }
+
 }
