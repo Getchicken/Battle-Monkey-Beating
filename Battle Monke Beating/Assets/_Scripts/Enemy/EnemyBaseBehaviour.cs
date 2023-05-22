@@ -18,6 +18,7 @@ public class EnemyBaseBehaviour : EnemyAttackStats
     public GameObject _impactEffect;
     public Transform _player;
     public Transform _bulletSpawnPoint;
+    public Animator _anim;
     public LayerMask whatIsPlayer;
 
     [SerializeField] private State state = State.Wait;
@@ -31,6 +32,7 @@ public class EnemyBaseBehaviour : EnemyAttackStats
     {
         _player = GameObject.FindWithTag("Player").transform;
         _currentAmmo = _maxAmmo;
+        _anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -90,6 +92,7 @@ public class EnemyBaseBehaviour : EnemyAttackStats
 
             Instantiate(_attackEffect, _bulletSpawnPoint.position, Quaternion.identity);
             Instantiate(_impactEffect, hit.point, Quaternion.identity);
+            _anim.SetTrigger("AttackTrigger");
 
             // Get PlayerStats of hit -> check for null -> TakeDamage
             if (hit.collider != null)

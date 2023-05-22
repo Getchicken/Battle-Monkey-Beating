@@ -5,7 +5,6 @@ public class PlayerStats : CharacterStats
 {
     [Header("References")]
     public GameObject Player;
-    public GameObject ArmsPivot;
     public GameObject UiCanvas;
     public GameObject XpBar;
     public UiManager uiManager;

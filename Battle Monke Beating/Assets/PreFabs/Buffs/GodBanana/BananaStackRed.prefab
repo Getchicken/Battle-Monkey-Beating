@@ -28,14 +28,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1261666387821846622}
-  m_LocalRotation: {x: -0.8517434, y: 0.06500178, z: -0.043427274, w: 0.5180946}
+  m_LocalRotation: {x: -0.85174453, y: 0.0649981, z: -0.04343127, w: 0.51809293}
   m_LocalPosition: {x: 10.252035, y: 1.7468208, z: 12.237178}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -118.727005, y: -17.101013, z: 18.904999}
 --- !u!33 &3271405383026259265
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -97,7 +97,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.006482416, y: 0.004366916, z: 0.004220961}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0.00073019014, y: 0.0011451667, z: 0.001252596}
 --- !u!114 &2108598546384477453
 MonoBehaviour:
@@ -111,12 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99f14dbd00a9b449ad4a5a4d5ef7ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _oParticleSystem: {fileID: 5528208799913797188, guid: afdb725c7727699458f20d9a9206559a,
+  _purpleBuffParticle: {fileID: 5528208799913797188, guid: d3956d3958eb09d479cbfab4b7b9d518,
     type: 3}
-  _tParticleSystem: {fileID: 5528208799913797188, guid: a88e9cbddad7f7943a881ecb40977c91,
-    type: 3}
-  _player: {fileID: 0}
-  _xpBar: {fileID: 0}
 --- !u!114 &2108598546384477450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,3 +128,5 @@ MonoBehaviour:
   powerUpEffect:
   - {fileID: 11400000, guid: 54dcb371f2dc4924485929a5f18e7f72, type: 2}
   - {fileID: 11400000, guid: 8991651f85a26f94aa268e2421ade285, type: 2}
+  _particleSystem: {fileID: 5528208799913797188, guid: aef1c18f0b40c5443ab2cff2db47c9af,
+    type: 3}

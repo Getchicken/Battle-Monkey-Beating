@@ -16,31 +16,33 @@ public class Kamikaze : MonoBehaviour
     [Header("References")]
     [SerializeField] NavMeshAgent _navAgent;
     [SerializeField] Transform _player;
-    [SerializeField] GameObject _explosionEffect;
     PlayerStats _playerStats;
     Explosion _explosion;
 
     void Awake()
     {
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
+        _player = GameObject.Find("Player").transform;
         _playerStats = _player.GetComponent<PlayerStats>();
         _navAgent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {
+        ChasePlayer();
         //Check if _player is in sight
+        /*
         _playerInSightRange = Physics.CheckSphere(transform.position, _sightRange, whatIsPlayer);
 
         if (!_playerInSightRange)
         {
             Patroling();
         }
-
+        
         if (_playerInSightRange)
         {
             ChasePlayer();
         }
+        */
     }
 
     private void Patroling()

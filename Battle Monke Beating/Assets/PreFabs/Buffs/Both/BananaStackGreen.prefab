@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7845580946653854850}
   m_LocalRotation: {x: -0.85174453, y: 0.0649981, z: -0.04343127, w: 0.51809293}
   m_LocalPosition: {x: 10.252035, y: 1.7468208, z: 11.196957}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -96,7 +96,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.006482416, y: 0.004366916, z: 0.004220961}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0.00073019014, y: 0.0011451667, z: 0.001252596}
 --- !u!114 &6926663341853966813
 MonoBehaviour:
@@ -113,5 +113,5 @@ MonoBehaviour:
   powerUpEffect:
   - {fileID: 11400000, guid: 54dcb371f2dc4924485929a5f18e7f72, type: 2}
   - {fileID: 11400000, guid: 8991651f85a26f94aa268e2421ade285, type: 2}
-  particleSystem: {fileID: 5528208799913797188, guid: d04ef683c67966b459830d07f7d0d44e,
+  _particleSystem: {fileID: 5528208799913797188, guid: d04ef683c67966b459830d07f7d0d44e,
     type: 3}

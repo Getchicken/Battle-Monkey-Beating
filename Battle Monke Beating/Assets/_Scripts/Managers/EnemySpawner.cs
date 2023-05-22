@@ -114,6 +114,10 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemy(Transform _enemy)
     {
         Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        if(_enemy == null)
+        {
+            WaveCompleted();
+        }
         Instantiate(_enemy, _sp.position, _sp.rotation);
     }
 }

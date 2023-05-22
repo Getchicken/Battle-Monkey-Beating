@@ -3,6 +3,7 @@ using UnityEngine;
 public class Explosion : MonoBehaviour
 {
     [SerializeField] private GameObject parentObject;
+    [SerializeField] private AudioSource source;
     [SerializeField] private float shakeDuration = 0.3f;
     [SerializeField] private float shakeStrength = 0.05f;
 
@@ -13,14 +14,14 @@ public class Explosion : MonoBehaviour
         Instantiate(_explosionEffect, transform.position, Quaternion.identity);
 
         // Sound
-        //AudioManager.Instance.Play("Explosion", 1, 1); I dont have this sound yet
+        AudioManager.Instance.Play("Explosion1", 0.05f, 1f);
 
 
         // Screenshake
         CamShaker.DoOnShake(shakeDuration, shakeStrength);
 
         //Destroy
-        Invoke("Destroy", 0.03f);
+        Invoke("Destroy", 0.02f);
     }
 
     void Destroy()

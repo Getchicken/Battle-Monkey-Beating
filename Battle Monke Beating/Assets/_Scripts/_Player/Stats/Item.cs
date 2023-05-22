@@ -3,16 +3,14 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     [SerializeField] ParticleSystem _purpleBuffParticle;
-    [SerializeField] GameObject _player;
-    [SerializeField] GameObject _xpBar;
     PlayerStats _playerStats;
     LevelSystem _levelSystem;
     Shape _shape;
 
     void Awake()
     {
-        _playerStats = _player.GetComponent<PlayerStats>();
-        _levelSystem = _xpBar.GetComponent<LevelSystem>();
+        _playerStats = FindObjectOfType<PlayerStats>();
+        _levelSystem = FindObjectOfType<LevelSystem>();
         _shape = GetComponent<Shape>();
     }
 
@@ -41,7 +39,7 @@ public class Item : MonoBehaviour
     
     private void XPGained()
     {
-        _levelSystem.GainExperienceFlateRate(10);
+        _levelSystem.GainExperienceFlateRate(25);
     }
 
     private void HPGained()

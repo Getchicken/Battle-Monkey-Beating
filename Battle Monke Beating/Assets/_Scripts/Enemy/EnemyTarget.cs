@@ -3,10 +3,11 @@ using UnityEngine;
 public class EnemyTarget : EnemyStats, IHealable
 {
     [Header("References")]
-    [SerializeField] private GameObject player;
+    [SerializeField] private Transform player;
     [SerializeField] private GameObject DamageText;
     AnimationHandler ah;
     Rigidbody rb;
+    BuffSpawner buffspawner;
     
 
     private void Start() 
@@ -14,22 +15,18 @@ public class EnemyTarget : EnemyStats, IHealable
         rb = GetComponent<Rigidbody>();
         ah = FindObjectOfType<AnimationHandler>();
         _eCurrentHealth = _eMaxHealth;
+        buffspawner = GetComponent<BuffSpawner>();
+        SetMaxHealthFromHealthLevel();
     }
 
-    public void OnTriggerEnter(Collider other)
+    private void SetMaxHealthFromHealthLevel()
     {
-        if (other.CompareTag("Kunai"))
-        {
-            CharacterStats characterStats = other.GetComponent<CharacterStats>();
-            if (characterStats == null) return;
-
-            Destroy(other.gameObject);
-        }
+        _eMaxHealth = _ehealthLevel * 10;
     }
 
     public void TakeDamage(float damageAmount)
     {
-        Debug.Log("your health is:" + _eCurrentHealth);
+        //Debug.Log("your health is:" + _eCurrentHealth);
 
         _eCurrentHealth -= damageAmount;
         Instantiate(DamageText, transform.position, Quaternion.identity, transform).GetComponent<DamageNumbers>().Initialise(damageAmount);
@@ -37,16 +34,9 @@ public class EnemyTarget : EnemyStats, IHealable
         if (_eCurrentHealth <= 0)
         {
             // gain xp for _player
+            buffspawner.SpawnBuff();
             Destroy(gameObject);
         }
-    }
-
-    public void TakeKnockback()
-    {
-        // apply Knockback on enemys
-        Vector3 knockbackDirection = transform.position - player.transform.position;
-        Vector3 knockbackForce = knockbackDirection.normalized * _knockbackForce;
-        rb.AddForce(knockbackForce, ForceMode.Impulse);
     }
 
     public void Heal(float healAmount)

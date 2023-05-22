@@ -360,7 +360,7 @@ public class PlayerMovement : MonoBehaviour
             if (!AudioManager.Instance.sounds[1].source.isPlaying)
             {
                 // check the state to set the volume and pitch
-                randomVolume = state == MovementState.sprinting ? UnityEngine.Random.Range(0.4f, 0.5f) : UnityEngine.Random.Range(0.2f, 0.3f);
+                randomVolume = state == MovementState.sprinting ? UnityEngine.Random.Range(0.5f, 0.6f) : UnityEngine.Random.Range(0.45f, 0.5f);
                 randomPitch = UnityEngine.Random.Range(0.85f, 0.95f);
 
                 AudioManager.Instance.Play("Footsteps", randomVolume, randomPitch);

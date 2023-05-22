@@ -27,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6856995267469440881}
-  m_LocalRotation: {x: -0.8517434, y: 0.06500178, z: -0.043427274, w: 0.5180946}
+  m_LocalRotation: {x: -0.85174453, y: 0.0649981, z: -0.04343127, w: 0.51809293}
   m_LocalPosition: {x: 10.252035, y: 1.7468208, z: 13.508988}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -118.727005, y: -17.101013, z: 18.904999}
 --- !u!33 &7191399663632884334
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -96,7 +96,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.006482416, y: 0.004366916, z: 0.004220961}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0.00073019014, y: 0.0011451667, z: 0.001252596}
 --- !u!114 &6046532252815444514
 MonoBehaviour:
@@ -112,5 +112,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _purpleBuffParticle: {fileID: 5528208799913797188, guid: d3956d3958eb09d479cbfab4b7b9d518,
     type: 3}
-  _player: {fileID: 0}
-  _xpBar: {fileID: 0}

@@ -17,11 +17,13 @@ public class Hunter : MonoBehaviour
     [Header("References")]
     [SerializeField] NavMeshAgent _navAgent;
     [SerializeField] Transform _player;
+    [SerializeField] Animator anim;
 
     void Awake()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         _navAgent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
     }
 
     private void Update()

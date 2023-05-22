@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class DeathBarrier : MonoBehaviour
 {
-    public GameObject UiCanvas;
     UiManager um;
 
     void Start()
     {
-        um = UiCanvas.GetComponent<UiManager>();
+        um = FindObjectOfType<UiManager>();
     }
 
     
